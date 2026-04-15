@@ -17,14 +17,14 @@ moving-average expansion.
 \tabular{ll}{
 Package: \tab periodicAR\cr
 Type: \tab Package\cr
-Version: \tab 1.5\cr
+Version: \tab 1.5-1\cr
 Date: \tab 2023-11-07\cr
-License: \tab GPL (>= 2)\cr
+License: \tab GPL (>= 3)\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr
 }
 
-This package provides a comprehensive approach to fitting perodic
+This package provides a comprehensive approach to fitting periodic
 autocorrelation models.
 It was converted and adopted to R by Mehmet Balcilar in 2002 from an S-Plus
 library written by A.I. McLeod and published on Statlib. 
@@ -82,13 +82,13 @@ peboxplot(logFraser)
 #Example 3. Periodic pacf
 pepacf(logFraser)
 #
-#Example 4. Fit pear using BIC
+#Example 4. Fit periodicAR using BIC
 ans<-pepacf(logFraser)
 #list output variables
 names(ans)
 #the model orders selected for each month are:
 ans$mbice
-#now fit with pear
+#now fit with periodicAR
 ans <- periodicAR(logFraser, ic="bic")
 
 }

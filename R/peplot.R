@@ -12,11 +12,11 @@ function(z, lag = 1, label = FALSE, mfrow = c(2, 2))
 	z.title <- attr(z, "title")
 	if(is.null(z.title))
 		z.title <- " "
+	p <- attr(z, "tsp")[3]
 	z.names <- attr(z, "period.abb")
 	if(is.null(z.names)) {
-		z.names <- paste("period", unique(cycle(z)))
+		z.names <- paste("period", 1:p)
 	}
-	p <- attr(z, "tsp")[3]
 	start.month <- cycle(z)[1]
 	icount <- 0
 	for(imonth in 1:p) {

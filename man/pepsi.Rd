@@ -10,7 +10,7 @@ the coefficients in this expansion. These coefficients are
 needed in various time series computations such as in computing
 the variances of forecasts, variances of residual autocorrelations
 and theoretical autocovariances of a periodic autoregression.
-The function pepsi is used by pear to calculate the estimated
+The function pepsi is used by periodicAR to calculate the estimated
 standard deviations of the residual autocorrelations in a fitted
 periodic autoregression.
 }

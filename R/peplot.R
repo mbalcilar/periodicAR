@@ -5,13 +5,12 @@ function(z, lag = 1, label = FALSE, mfrow = c(2, 2))
 		stop("\nError: mfrow must be vector of length 2. \nExamples:\n     mfrow=c(1,1) produces 1 plot at a time\n     mfrow=c(2,2) produces 4 plots at a time."
 			)
 	}
-	ztitle <- attr(z, "title")
-	par(mfrow = mfrow)
-	plot.count <- apply(matrix(mfrow, ncol = 2, nrow = 1), MARGIN = 1, FUN
-		 = "prod")
 	z.title <- attr(z, "title")
 	if(is.null(z.title))
 		z.title <- " "
+	par(mfrow = mfrow)
+	plot.count <- apply(matrix(mfrow, ncol = 2, nrow = 1), MARGIN = 1, FUN
+		 = "prod")
 	p <- attr(z, "tsp")[3]
 	z.names <- attr(z, "period.abb")
 	if(is.null(z.names)) {
@@ -47,22 +46,12 @@ function(z, lag = 1, label = FALSE, mfrow = c(2, 2))
 			identify(x, y, labels = u)
 		}
 		if((icount != p) && (icount %% plot.count) == 0) {
-			if(!is.null(ztitle)) {
-			        mtext(ztitle, side = 3, outer = TRUE, line = -2, cex = 1.2)
-				#par(mfrow = c(1, 1))
-				#title(main = ztitle)
-				#par(mfrow = mfrow)
-			}
+			mtext(z.title, side = 3, outer = TRUE, line = -2, cex = 1.2)
 			cat("\n Press Enter key for next plot")
-			junk <- (as.character(readline()))[1]
+			readline()
 		}
 		else if((icount %% plot.count) == 0) {
-			if(!is.null(ztitle)) {
-			        mtext(ztitle, side = 3, outer = TRUE, line = -2, cex = 1.2)
-				#par(mfrow = c(1, 1))
-				#title(main = ztitle)
-				#par(mfrow = mfrow)
-			}
+			mtext(z.title, side = 3, outer = TRUE, line = -2, cex = 1.2)
 		}
 	}
 	par(mfrow = c(1, 1))

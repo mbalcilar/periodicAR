@@ -8,7 +8,9 @@ function(z, m, ic = "none")
 		lag.max <- max(m)
 		acf.out <- peacf(z, lag.max, plot = FALSE)
 	}
-	else if(!(ic == "none")) {
+	else {
+		if(!(ic %in% c("aic", "bic")))
+			stop(paste("Error: invalid ic value '", ic, "'. Must be 'none', 'aic', or 'bic'.", sep = ""))
 		p <- attr(z, "tsp")[3]
 		N <- length(z)
 		lag.max <- ceiling((0.25 * N)/p)

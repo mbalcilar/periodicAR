@@ -1,25 +1,27 @@
 Type: Package
 Package: periodicAR
 Version: 1.5-1
-Date: 2023-11-07
-Title: Identification and Estimation Periodic Autoregressive Models
+Date: 2025-09-16
+Title: Identification and Estimation of Periodic Autoregressive Models
 Authors@R: 
     c(person(given="Mehmet", 
              family="Balcilar", 
              email = "mehmet@mbalcilar.net", 
-             role = c("cre", "com", "aut")),
+             role = c("aut", "cre")),
     person(given="Ian",
            family="McLeod", 
            email = "aimcleod@uwo.ca", 
            role = "aut")
            )
+Author: Mehmet Balcilar [aut, cre], Ian McLeod [aut]
+Maintainer: Mehmet Balcilar <mehmet@mbalcilar.net>
 Depends: R (>= 2.1.0)
-Description: This package provides functions for the identification, estimation, 
-             and diagnostic control of periodic autoregressive models.
-LazyLoad: yes
-LazyData: yes
+Description: Functions for the identification, estimation, 
+    and diagnostic checking of periodic autoregressive models.
 License: GPL (>= 3)
 Encoding: UTF-8
 Language: en-US
-URL: http://www.mbalcilar.net
+URL: https://www.mbalcilar.net
 RoxygenNote: 7.2.3
+
+

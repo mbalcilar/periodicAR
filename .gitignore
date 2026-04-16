@@ -6,4 +6,8 @@ periodicAR.Rproj
 .DS_Store
 .git
 .Rbuildignore
-
+.DS_Store
+.gitignore
+inst/.DS_Store
+..Rcheck
+.git

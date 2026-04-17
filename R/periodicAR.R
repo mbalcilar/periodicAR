@@ -25,8 +25,10 @@ function(z, m, ic = "none")
 		acf.out <- pacf.out$acf.out
 	}
 	p <- acf.out$period
-	if((ic == "none") && (length(m) != p))
+	if((ic == "none") && (length(m) != p)) {
+		warning("model orders vector recycled to match period length")
 		m <- rep(m, length = p)
+	}
 	res <- numeric(length(z))
 	means <- acf.out$means
 	for(imonth in 1:p) {
@@ -73,11 +75,18 @@ function(z, m, ic = "none")
 				}
 			}
 			b <- acvf[imonth, 1 + (1:pm)]
-			phim <- solve(a, b)
+			phim <- tryCatch(
+				solve(a, b),
+				error = function(e) stop(paste("error: singular Yule-Walker matrix for season", imonth, "- try a smaller model order"))
+			)
 			resvar[imonth] <- acvf[imonth, 1] - phim %*% acvf[
 				imonth, 1 + (1:pm)]
-			cov[[imonth]] <- (solve(a) * resvar[imonth])/nyrs[
-				imonth]
+			if(resvar[imonth] <= 0)
+				stop(paste("error: non-positive residual variance for season", imonth, "- Yule-Walker system is ill-conditioned"))
+			cov[[imonth]] <- tryCatch(
+				(solve(a) * resvar[imonth])/nyrs[imonth],
+				error = function(e) stop(paste("error: singular Yule-Walker matrix for season", imonth, "- try a smaller model order"))
+			)
 			sephim <- sqrt(diag(cov[[imonth]]))
 			if(pm < lag.max) {
 				phim <- c(phim, rep(0, lag.max - pm))
@@ -135,6 +144,7 @@ function(z, m, ic = "none")
 	QM <- ra$portmanteau.test$QM
 	QM.df <- ra$portmanteau.test$QM.df - matrix(m, nrow = p, ncol = ncol(QM
 		))
+	QM.df[QM.df <= 0] <- NA
 	QM.sl <- matrix((1 - pchisq(QM, QM.df)), nrow = nrow(QM), ncol = ncol(
 		QM), dimnames = dimnames(QM))
 	portmanteau.test <- list(QM = QM, QM.df = QM.df, QM.sl = QM.sl)
@@ -144,4 +154,3 @@ function(z, m, ic = "none")
 		cov = cov)
 	out
 }
-

@@ -4,7 +4,7 @@ function(r)
 	scale <- 0.5
 	type <- attr(r, "type")
 	if(is.null(type))
-		stop("Error: invalid input. Input must be output from peacf or pepacf"
+		stop("error: invalid input. Input must be output from peacf or pepacf"
 			)
 	if(type == "acf") {
 		acf <- scale * r$acf

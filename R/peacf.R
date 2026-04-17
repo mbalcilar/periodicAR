@@ -16,6 +16,7 @@ function(z, lag.max, plot = TRUE)
 	for(imonth in 1:p) {
 		k <- cycle(z) == imonth
 		zmean[imonth] <- mean(z[k])
+		# zc temporarily holds seasonal means; subtracted from z below
 		zc[k] <- zmean[imonth]
 		nyrs[imonth] <- length(z[k])
 		zsd[imonth] <- sqrt(sum((z[k] - zc[k])^2)/nyrs.max)

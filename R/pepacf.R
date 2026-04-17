@@ -40,9 +40,11 @@ function(z, lag.max, plot = TRUE, acf.out)
 				    imonth, i]
 				}
 			}
+			if(SFPREV == 0 || resvar[imonth, ilag] == 0)
+				stop("error: zero residual variance encountered; series may be degenerate")
 			phi[imonth, ilag] <- D/SFPREV
 			phiF[imonth, ilag] <- D/resvar[imonth, ilag]
-			pacf[imonth, ilag] <- D/sqrt(SFPREV * resvar[imonth, 
+			pacf[imonth, ilag] <- D/sqrt(SFPREV * resvar[imonth,
 				ilag])
 			TEMP <- 1 - phi[imonth, ilag] * phiF[imonth, ilag]
 			resvar[imonth, ilag + 1] <- resvar[imonth, ilag] * TEMP

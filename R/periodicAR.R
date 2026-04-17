@@ -101,7 +101,7 @@ function(z, m, ic = "none")
 		imonth <- cycle(z)[i]
 		pm <- m[imonth]
 		if(((i - pm) > 0) && (pm > 0))
-			res[i] <- z[i] - z[i - (1:pm)] %*% phi[imonth, 1:pm]
+			res[i] <- z[i] - sum(z[i - (1:pm)] * phi[imonth, 1:pm])
 		else if(pm == 0)
 			res[i] <- z[i]
 	}

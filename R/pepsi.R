@@ -5,8 +5,7 @@ function(phi, lag.max)
 	p <- nrow(phi)
 	m.max <- ncol(phi)
 	if(m.max > 1)
-		m <- t(apply(t(apply(t(apply(phi, 1, "rev")) != 0, 1, "cumsum")
-			) != 0, 1, "cumsum"))[, ncol(phi)]
+		m <- apply(phi, 1, function(r) { nz <- which(r != 0); if(length(nz)) max(nz) else 1L })
 	else m <- rep(1, p)
 	psi <- matrix(numeric(1), nrow = p, ncol = lag.max + 1)
 	psi[, 1] <- 1

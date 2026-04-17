@@ -9,8 +9,7 @@ function(z, lag = 1, label = FALSE, mfrow = c(2, 2))
 	if(is.null(z.title))
 		z.title <- " "
 	par(mfrow = mfrow)
-	plot.count <- apply(matrix(mfrow, ncol = 2, nrow = 1), MARGIN = 1, FUN
-		 = "prod")
+	plot.count <- prod(mfrow)
 	p <- attr(z, "tsp")[3]
 	z.names <- attr(z, "period.abb")
 	if(is.null(z.names)) {

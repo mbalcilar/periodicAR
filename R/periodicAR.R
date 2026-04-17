@@ -154,4 +154,3 @@ function(z, m, ic = "none")
 		cov = cov)
 	out
 }
-

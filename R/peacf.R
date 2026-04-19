@@ -79,3 +79,4 @@ function(z, lag.max, plot = TRUE)
 	}
 	r
 }
+

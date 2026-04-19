@@ -83,3 +83,4 @@ function(z, lag.max, plot = TRUE, acf.out)
 	}
 	r
 }
+

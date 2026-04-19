@@ -1,6 +1,5 @@
 `periodicAR` <-
-function(z, m, ic = "none")
-{
+function(z, m, ic = "none") {
 	if(ic == "none") {
 		if(missing(m)) {
 			stop("Error: m required. Vector of model orders")
@@ -38,8 +37,6 @@ function(z, m, ic = "none")
 	res <- z - res
 	attr(res, "tsp") <- attr(z, "tsp")
 	z <- res
-	Qm <- 0
-	Qm.sl <- 0
 	nyrs <- acf.out$sub.lengths
 	bsd <- acf.out$benchmark.sd
 	phi <- matrix(numeric(1), nrow = p, ncol = lag.max)
